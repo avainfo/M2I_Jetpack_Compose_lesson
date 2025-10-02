@@ -7,11 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -19,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
-import androidx.compose.ui.unit.dp
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
 
@@ -43,7 +39,15 @@ class MainActivity : ComponentActivity() {
 				Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 					Column(modifier = Modifier.padding(innerPadding)) {
 						// TODO : Modify Code here
-						CustomCard(height = 75, width = 50, color = Color.Red, brush = cardGradient)
+						CustomCard(height = 75, width = 150, color = Color.Red) {
+							CustomCard(height = 70, width = 145, color = Color.Blue) {
+								CustomCard(height = 65, width = 140, color = Color.White) {
+									CustomCard(height = 60, width = 135, color = Color.Green) {
+										Text("Coucou")
+									}
+								}
+							}
+						}
 					}
 				}
 			}
