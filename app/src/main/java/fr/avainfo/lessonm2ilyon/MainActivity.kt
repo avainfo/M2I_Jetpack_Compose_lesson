@@ -20,8 +20,14 @@ import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import fr.avainfo.lessonm2ilyon.screens.SecondScreen
+import fr.avainfo.lessonm2ilyon.screens.ThirdScreen
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
+import kotlinx.serialization.Serializable
 
 val cardGradient = object : ShaderBrush() {
     override fun createShader(size: Size): Shader {
@@ -35,6 +41,16 @@ val cardGradient = object : ShaderBrush() {
 }
 
 class MainActivity : ComponentActivity() {
+
+    @Serializable
+    object FirstPage
+
+    @Serializable
+    object SecondPage
+
+    @Serializable
+    object ThirdPage
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,6 +58,15 @@ class MainActivity : ComponentActivity() {
             val configuration = LocalConfiguration.current
 
             val screenWidth = configuration.screenWidthDp
+
+            val navController = rememberNavController()
+
+            NavHost(navController, startDestination = FirstPage) {
+                composable<FirstPage> { MainActivity() }
+                composable<SecondPage> { SecondScreen() }
+                composable<ThirdPage> { ThirdScreen() }
+            }
+
             LessonM2ILyonTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Row(
