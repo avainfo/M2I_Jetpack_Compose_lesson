@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import fr.avainfo.lessonm2ilyon.screens.FirstScreen
 import fr.avainfo.lessonm2ilyon.screens.SecondScreen
 import fr.avainfo.lessonm2ilyon.screens.ThirdScreen
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
@@ -62,7 +63,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
 
             NavHost(navController, startDestination = FirstPage) {
-                composable<FirstPage> { MainActivity() }
+                composable<FirstPage> { FirstScreen() }
                 composable<SecondPage> { SecondScreen() }
                 composable<ThirdPage> { ThirdScreen() }
             }
