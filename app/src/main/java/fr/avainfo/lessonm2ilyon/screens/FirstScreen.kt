@@ -74,7 +74,7 @@ fun FirstScreen(navController: NavController) {
                 }
                 Text(
                     counter.toString(),
-                    fontSize = (screenWidth / 1.2 - (counter.toString().count() * screenWidth / 8)).sp,
+                    fontSize = ((screenWidth / 1.2) / counter.toString().count()).sp,
                 )
                 Button(onClick = {
                     counter++
