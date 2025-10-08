@@ -22,7 +22,10 @@ fun CustomCard(
 			.height(height.dp)
 			.width(width.dp),
 		color = color,
-		shape = RoundedCornerShape(15.dp)
+		shape = RoundedCornerShape(15.dp),
+		onClick = {
+			
+		}
 	) {
 		Column {
 			content()
