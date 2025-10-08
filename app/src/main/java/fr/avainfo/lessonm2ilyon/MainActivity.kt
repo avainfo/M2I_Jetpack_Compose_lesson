@@ -56,9 +56,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val configuration = LocalConfiguration.current
-
-            val screenWidth = configuration.screenWidthDp
 
             val navController = rememberNavController()
 
@@ -66,28 +63,6 @@ class MainActivity : ComponentActivity() {
                 composable<FirstPage> { FirstScreen() }
                 composable<SecondPage> { SecondScreen() }
                 composable<ThirdPage> { ThirdScreen() }
-            }
-
-            LessonM2ILyonTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Row(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                            .fillMaxSize(),
-                        horizontalArrangement = Arrangement.SpaceAround
-                    ) {
-                        // Todo : Search shortcut to modify multiple ctrl + w
-                        CustomCard(height = 75, width = screenWidth / 4, color = Color.Blue) {
-                            Text("Page 1")
-                        }
-                        CustomCard(height = 75, width = screenWidth / 4, color = Color.White) {
-                            Text("Page 2")
-                        }
-                        CustomCard(height = 75, width = screenWidth / 4, color = Color.Red) {
-                            Text("Page 3")
-                        }
-                    }
-                }
             }
         }
     }
