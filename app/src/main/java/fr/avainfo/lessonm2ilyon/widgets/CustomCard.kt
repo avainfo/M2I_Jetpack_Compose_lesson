@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import fr.avainfo.lessonm2ilyon.utils.Routes
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -18,7 +19,7 @@ fun CustomCard(
     width: Int,
     color: Color = Color.Red,
     navController: NavController,
-    route: @Serializable Any,
+    route: @Serializable Routes,
     content: @Composable (() -> Unit),
 ) {
     Surface(

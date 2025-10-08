@@ -11,8 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.navigation.NavController
-import fr.avainfo.lessonm2ilyon.MainActivity
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
+import fr.avainfo.lessonm2ilyon.utils.FirstPage
+import fr.avainfo.lessonm2ilyon.utils.SecondPage
+import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
 
 @Composable
@@ -34,7 +36,7 @@ fun FirstScreen(navController: NavController) {
                     width = screenWidth / 4,
                     color = Color.Blue,
                     navController = navController,
-                    MainActivity.FirstPage,
+                    FirstPage,
                 ) {
                     Text("Page 1")
                 }
@@ -43,7 +45,7 @@ fun FirstScreen(navController: NavController) {
                     width = screenWidth / 4,
                     color = Color.White,
                     navController = navController,
-                    MainActivity.SecondPage,
+                    SecondPage,
                 ) {
                     Text("Page 2")
                 }
@@ -52,7 +54,7 @@ fun FirstScreen(navController: NavController) {
                     width = screenWidth / 4,
                     color = Color.Red,
                     navController = navController,
-                    MainActivity.ThirdPage,
+                    ThirdPage,
                 ) {
                     Text("Page 3")
                 }

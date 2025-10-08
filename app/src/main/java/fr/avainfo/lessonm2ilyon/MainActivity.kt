@@ -10,18 +10,11 @@ import androidx.navigation.compose.rememberNavController
 import fr.avainfo.lessonm2ilyon.screens.FirstScreen
 import fr.avainfo.lessonm2ilyon.screens.SecondScreen
 import fr.avainfo.lessonm2ilyon.screens.ThirdScreen
-import kotlinx.serialization.Serializable
+import fr.avainfo.lessonm2ilyon.utils.FirstPage
+import fr.avainfo.lessonm2ilyon.utils.SecondPage
+import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 
 class MainActivity : ComponentActivity() {
-
-    @Serializable
-    object FirstPage
-
-    @Serializable
-    object SecondPage
-
-    @Serializable
-    object ThirdPage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
