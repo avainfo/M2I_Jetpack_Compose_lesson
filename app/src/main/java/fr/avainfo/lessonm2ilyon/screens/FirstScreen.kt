@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.navigation.NavController
+import fr.avainfo.lessonm2ilyon.MainActivity
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
 
 @Composable
-fun FirstScreen() {
+fun FirstScreen(navController: NavController) {
     val configuration = LocalConfiguration.current
 
     val screenWidth = configuration.screenWidthDp
@@ -27,13 +29,31 @@ fun FirstScreen() {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 // Todo : Search shortcut to modify multiple ctrl + w
-                CustomCard(height = 75, width = screenWidth / 4, color = Color.Blue) {
+                CustomCard(
+                    height = 75,
+                    width = screenWidth / 4,
+                    color = Color.Blue,
+                    navController = navController,
+                    MainActivity.FirstPage,
+                ) {
                     Text("Page 1")
                 }
-                CustomCard(height = 75, width = screenWidth / 4, color = Color.White) {
+                CustomCard(
+                    height = 75,
+                    width = screenWidth / 4,
+                    color = Color.White,
+                    navController = navController,
+                    MainActivity.SecondPage,
+                ) {
                     Text("Page 2")
                 }
-                CustomCard(height = 75, width = screenWidth / 4, color = Color.Red) {
+                CustomCard(
+                    height = 75,
+                    width = screenWidth / 4,
+                    color = Color.Red,
+                    navController = navController,
+                    MainActivity.ThirdPage,
+                ) {
                     Text("Page 3")
                 }
             }

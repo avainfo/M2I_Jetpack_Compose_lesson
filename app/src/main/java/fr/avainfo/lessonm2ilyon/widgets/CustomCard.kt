@@ -9,27 +9,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import kotlinx.serialization.Serializable
 
 @Composable
 fun CustomCard(
-	height: Int = 50,
-	width: Int,
-	color: Color = Color.Red,
-	content: @Composable () -> Unit
+    height: Int = 50,
+    width: Int,
+    color: Color = Color.Red,
+    navController: NavController,
+    route: @Serializable Any,
+    content: @Composable (() -> Unit),
 ) {
-	Surface(
-		modifier = Modifier
-			.height(height.dp)
-			.width(width.dp),
-		color = color,
-		shape = RoundedCornerShape(15.dp),
-		onClick = {
-			
-		}
-	) {
-		Column {
-			content()
-
-		}
-	}
+    Surface(
+        modifier = Modifier
+            .height(height.dp)
+            .width(width.dp),
+        color = color,
+        shape = RoundedCornerShape(15.dp),
+        onClick = {
+            navController.navigate(route = route)
+        }
+    ) {
+        Column {
+            content()
+        }
+    }
 }

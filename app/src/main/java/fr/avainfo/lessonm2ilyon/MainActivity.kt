@@ -4,12 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RadialGradientShader
-import androidx.compose.ui.graphics.Shader
-import androidx.compose.ui.graphics.ShaderBrush
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -36,7 +30,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
 
             NavHost(navController, startDestination = FirstPage) {
-                composable<FirstPage> { FirstScreen() }
+                composable<FirstPage> { FirstScreen(navController) }
                 composable<SecondPage> { SecondScreen() }
                 composable<ThirdPage> { ThirdScreen() }
             }
