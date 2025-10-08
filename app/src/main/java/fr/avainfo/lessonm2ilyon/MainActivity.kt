@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import fr.avainfo.lessonm2ilyon.screens.FirstScreen
 import fr.avainfo.lessonm2ilyon.screens.SecondScreen
 import fr.avainfo.lessonm2ilyon.screens.ThirdScreen
@@ -24,7 +25,11 @@ class MainActivity : ComponentActivity() {
 
             NavHost(navController, startDestination = FirstPage) {
                 composable<FirstPage> { FirstScreen(navController) }
-                composable<SecondPage> { SecondScreen() }
+                composable<SecondPage> { backStackEntry ->
+                    val secondPage: SecondPage = backStackEntry.toRoute()
+                    println(secondPage.toString())
+                    SecondScreen(secondPage = secondPage)
+                }
                 composable<ThirdPage> { ThirdScreen() }
             }
         }

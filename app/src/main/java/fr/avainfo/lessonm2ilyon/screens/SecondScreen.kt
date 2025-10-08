@@ -9,9 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import fr.avainfo.lessonm2ilyon.utils.SecondPage
 
 @Composable
-fun SecondScreen() {
+fun SecondScreen(secondPage: SecondPage) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -21,6 +22,7 @@ fun SecondScreen() {
             Alignment.CenterHorizontally,
         ) {
             Text("2ème Page", Modifier.padding())
+            Text("Nombre de clicks : ${secondPage.counter}", Modifier.padding())
         }
     }
 }

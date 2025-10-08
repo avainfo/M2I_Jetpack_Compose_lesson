@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 object FirstPage : Routes()
 
 @Serializable
-object SecondPage : Routes()
+data class SecondPage(val counter: Int = 0) : Routes()
 
 @Serializable
 object ThirdPage : Routes()
