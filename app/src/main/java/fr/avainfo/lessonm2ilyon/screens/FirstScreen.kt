@@ -1,5 +1,6 @@
 package fr.avainfo.lessonm2ilyon.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import fr.avainfo.lessonm2ilyon.data.TodoAPI
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
 import fr.avainfo.lessonm2ilyon.utils.FirstPage
@@ -83,6 +86,23 @@ fun FirstScreen(navController: NavController) {
 
                     TodoAPI().getTodoV1(counter)
                     TodoAPI().getTodoV2(counter)
+
+                    val db = Firebase.firestore
+
+                    val user = hashMapOf(
+                        "first" to "Ada",
+                        "last" to "Lovelace",
+                        "born" to 1815,
+                    )
+
+                    db.collection("users")
+                        .add(user)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d("FIREBASE", "DocumentSnapshot added with ID: ${documentReference.id}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("FIREBASE", "Error adding document", e)
+                        }
 
                 }) {
                     Text("Appuyer")
