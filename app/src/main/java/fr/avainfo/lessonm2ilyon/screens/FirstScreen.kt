@@ -27,7 +27,6 @@ import fr.avainfo.lessonm2ilyon.utils.FirstPage
 import fr.avainfo.lessonm2ilyon.utils.SecondPage
 import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
