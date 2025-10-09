@@ -20,21 +20,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.google.gson.Gson
 import fr.avainfo.lessonm2ilyon.data.TodoAPI
-import fr.avainfo.lessonm2ilyon.models.Todo
-import fr.avainfo.lessonm2ilyon.services.TodoService
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
 import fr.avainfo.lessonm2ilyon.utils.FirstPage
 import fr.avainfo.lessonm2ilyon.utils.SecondPage
 import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
-import okhttp3.OkHttp
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun FirstScreen(navController: NavController) {
@@ -90,16 +81,8 @@ fun FirstScreen(navController: NavController) {
                     counter++
                     println(counter)
 
-                    TodoAPI().getTodo(counter);
-                    val client: OkHttpClient = OkHttpClient.Builder().build();
-                    val request: Request =
-                        Request.Builder().url("https://jsonplaceholder.typicode.com/todos/1")
-                            .build()
-                    var response = client.newCall(request).execute();
-                    var body: String = response.body?.string() ?: "{}"
-                    println(body)
-                    val todo: Todo = Gson().fromJson(body, Todo::class.java)
-                    println(todo.title)
+                    TodoAPI().getTodoV1(counter);
+
                 }) {
                     Text("Appuyer")
                 }
