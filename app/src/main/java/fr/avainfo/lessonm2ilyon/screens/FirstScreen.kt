@@ -25,6 +25,7 @@ import fr.avainfo.lessonm2ilyon.utils.FirstPage
 import fr.avainfo.lessonm2ilyon.utils.SecondPage
 import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
+import retrofit2.Retrofit
 
 @Composable
 fun FirstScreen(navController: NavController) {
@@ -79,6 +80,9 @@ fun FirstScreen(navController: NavController) {
                 Button(onClick = {
                     counter++
                     println(counter)
+                    var retrofit = Retrofit.Builder()
+                        .baseUrl("https://jsonplaceholder.typicode.com/todos/1")
+                        .build();
                 }) {
                     Text("Appuyer")
                 }
