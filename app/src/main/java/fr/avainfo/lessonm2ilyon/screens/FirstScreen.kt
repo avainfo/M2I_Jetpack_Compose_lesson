@@ -20,6 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.gson.Gson
+import fr.avainfo.lessonm2ilyon.data.TodoAPI
 import fr.avainfo.lessonm2ilyon.models.Todo
 import fr.avainfo.lessonm2ilyon.services.TodoService
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
@@ -27,6 +29,9 @@ import fr.avainfo.lessonm2ilyon.utils.FirstPage
 import fr.avainfo.lessonm2ilyon.utils.SecondPage
 import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
+import okhttp3.OkHttp
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -85,20 +90,16 @@ fun FirstScreen(navController: NavController) {
                     counter++
                     println(counter)
 
-                    val retrofit: Retrofit =
-                        Retrofit.Builder()
-                            .baseUrl("https://jsonplaceholder.typicode.com")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                    val todoService: TodoService = retrofit.create(TodoService::class.java);
-
-                    val todoRes: Response<Todo?>? = todoService.getTodo(15)?.execute();
-                    if (todoRes == null || todoRes.body() == null) println("Todo not found")
-                    else {
-                        val todo: Todo = todoRes.body() as Todo;
-                        println("Todo(${todo.id}): ${todo.title} [${todo.userId}] {${if (todo.completed) "X" else " "}}");
-                    }
+                    TodoAPI().getTodo(counter);
+                    val client: OkHttpClient = OkHttpClient.Builder().build();
+                    val request: Request =
+                        Request.Builder().url("https://jsonplaceholder.typicode.com/todos/1")
+                            .build()
+                    var response = client.newCall(request).execute();
+                    var body: String = response.body?.string() ?: "{}"
+                    println(body)
+                    val todo: Todo = Gson().fromJson(body, Todo::class.java)
+                    println(todo.title)
                 }) {
                     Text("Appuyer")
                 }
