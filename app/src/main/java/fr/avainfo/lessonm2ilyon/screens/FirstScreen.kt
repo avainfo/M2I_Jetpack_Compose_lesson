@@ -33,7 +33,7 @@ fun FirstScreen(navController: NavController) {
 
     val screenWidth = configuration.screenWidthDp
 
-    var counter by remember { mutableIntStateOf(0) };
+    var counter by remember { mutableIntStateOf(0) }
 
     LessonM2ILyonTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -81,7 +81,8 @@ fun FirstScreen(navController: NavController) {
                     counter++
                     println(counter)
 
-                    TodoAPI().getTodoV1(counter);
+                    TodoAPI().getTodoV1(counter)
+                    TodoAPI().getTodoV2(counter)
 
                 }) {
                     Text("Appuyer")

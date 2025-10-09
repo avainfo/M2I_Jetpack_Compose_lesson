@@ -2,7 +2,6 @@ package fr.avainfo.lessonm2ilyon.data
 
 import com.google.gson.Gson
 import fr.avainfo.lessonm2ilyon.models.Todo
-import fr.avainfo.lessonm2ilyon.services.PostsService
 import fr.avainfo.lessonm2ilyon.services.TodoService
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -28,7 +27,7 @@ class TodoAPI {
     }
 
     fun getTodoV1(id: Int): Todo {
-        val todoService: TodoService = makeRetrofitRequest<TodoService>(
+        val todoService: TodoService = makeRetrofitRequest(
             "https://jsonplaceholder.typicode.com",
             TodoService::class.java
         )
@@ -48,7 +47,7 @@ class TodoAPI {
 
     fun getTodoV2(id: Int): Todo {
         val client: OkHttpClient = OkHttpClient.Builder().build()
-        val request = makeOkHttpRequest("https://jsonplaceholder.typicode.com/todos/$id");
+        val request = makeOkHttpRequest("https://jsonplaceholder.typicode.com/todos/$id")
         val response = client.newCall(request).execute()
         if (response.body == null) return Todo()
         val body: String = response.body!!.string()
