@@ -60,5 +60,6 @@ dependencies {
 
     // Custom Dependencies
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.retrofit.v300)
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.converter.gson)
 }

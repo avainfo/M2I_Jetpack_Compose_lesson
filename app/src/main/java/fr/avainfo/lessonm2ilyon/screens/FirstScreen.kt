@@ -20,12 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import fr.avainfo.lessonm2ilyon.models.Todo
+import fr.avainfo.lessonm2ilyon.services.TodoService
 import fr.avainfo.lessonm2ilyon.ui.theme.LessonM2ILyonTheme
 import fr.avainfo.lessonm2ilyon.utils.FirstPage
 import fr.avainfo.lessonm2ilyon.utils.SecondPage
 import fr.avainfo.lessonm2ilyon.utils.ThirdPage
 import fr.avainfo.lessonm2ilyon.widgets.CustomCard
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun FirstScreen(navController: NavController) {
@@ -80,9 +85,21 @@ fun FirstScreen(navController: NavController) {
                 Button(onClick = {
                     counter++
                     println(counter)
-                    var retrofit = Retrofit.Builder()
-                        .baseUrl("https://jsonplaceholder.typicode.com/todos/1")
-                        .build();
+
+                    val retrofit: Retrofit =
+                        Retrofit.Builder()
+                            .baseUrl("https://jsonplaceholder.typicode.com")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    val todoService: TodoService = retrofit.create(TodoService::class.java);
+
+                    val todoRes: Response<Todo?>? = todoService.getTodo(15)?.execute();
+                    if (todoRes == null || todoRes.body() == null) println("Todo not found")
+                    else {
+                        val todo: Todo = todoRes.body() as Todo;
+                        println("Todo(${todo.id}): ${todo.title} [${todo.userId}] {${if (todo.completed) "X" else " "}}");
+                    }
                 }) {
                     Text("Appuyer")
                 }
